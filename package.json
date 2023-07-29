@@ -1,0 +1,60 @@
+{
+  "name": "veriloga",
+  "displayName": "Verilog A - Language Support",
+  "description": "Language support for Verilog A.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.79.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "veriloga",
+        "aliases": [
+          "Verilog A",
+          "veriloga"
+        ],
+        "extensions": [
+          ".va"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "veriloga",
+        "scopeName": "source.va",
+        "path": "./syntaxes/veriloga.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "veriloga",
+        "path": "./snippets/veriloga.json"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "npm run compile:antlr4ts && tsc --project ./",
+    "compile:antlr4ts": "antlr4ts -visitor -Xexact-output-dir -o ./src/compiling/grammar/build ./src/compiling/grammar/VerilogA.g4"
+  },
+  "dependencies": {
+    "antlr4ts": "^0.5.0-alpha.4",
+    "uri-js": "^4.4.1",
+    "vscode-languageclient": "^7.0.0",
+    "vscode-languageserver": "^7.0.0",
+    "vscode-languageserver-textdocument": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.4",
+    "@types/vscode": "^1.80.0",
+    "antlr4ts-cli": "^0.5.0-alpha.4",
+    "js-yaml": "^4.1.0",
+    "typescript": "^4.9.5"
+  }
+}

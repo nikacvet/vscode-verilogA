@@ -1,0 +1,16 @@
+`include "disciplines.vams"
+
+module rc_low_pass_filter (
+  input vin,
+  output vout
+);
+
+parameter real R = 1.0k;
+parameter real C = 1.0n;
+
+analog begin
+  // Define the differential equation for the RC low-pass filter
+  ddt(vout) <+ -vout / (R * C) + vin / (R * C);
+end
+
+endmodule
