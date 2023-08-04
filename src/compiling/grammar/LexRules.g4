@@ -6,9 +6,12 @@ EXP : [eE] ;
 
 
 DECIMAL_BASE : APOSTROPHE_FRAG S_FRAG? D_FRAG ;
+BINARY_BASE : APOSTROPHE_FRAG S_FRAG? B_FRAG ;
 OCTAL_BASE : APOSTROPHE_FRAG S_FRAG? O_FRAG ;
+HEX_BASE : APOSTROPHE_FRAG S_FRAG? H_FRAG ;
 APOSTROPHE_ZERO : APOSTROPHE_FRAG ZERO_FRAG ;
 APOSTROPHE_ONE : APOSTROPHE_FRAG ONE_FRAG ;
+APOSTROPHE_Z_OR_X : APOSTROPHE_FRAG ( Z_FRAG | X_FRAG ) ;
 ZERO : [0] ;
 ONE : [1] ;
 TWO : [2] ;
@@ -30,6 +33,9 @@ LOWER_PS : [p][s] ;
 LOWER_FS : [f][s] ;
 UNDERSCORE : [_] ;
 QUESTION : [?] ;
+HEX_DIGIT : [a-fA-F] ;
+X_DIGIT : [xX] ;
+Z_DIGIT : [zZ] ;
 
 C_IDENTIFIER : [a-zA-Z_] ( [a-zA-Z0-9_] )* ;
 SIMPLE_IDENTIFIER : [a-zA-Z_] ( [a-zA-Z0-9_$] )* ;
@@ -60,5 +66,9 @@ fragment APOSTROPHE_FRAG : ['] ;
 fragment S_FRAG : [sS] ;
 fragment D_FRAG : [dD] ;
 fragment O_FRAG : [oO] ;
-fragment ZERO_FRAG : [0] ;
 fragment ONE_FRAG : [1] ;
+fragment B_FRAG : [bB] ;
+fragment H_FRAG : [hH] ;
+fragment Z_FRAG : [zZ] ;
+fragment X_FRAG : [xX] ;
+fragment ZERO_FRAG : [0] ;

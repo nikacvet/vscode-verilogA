@@ -1,6 +1,7 @@
 /node_modules/
 /out/
+/dist/
 /src/compiling/grammar/build/
 **.antlr
-/dist/
 help.txt
+*.vsix

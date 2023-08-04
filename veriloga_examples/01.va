@@ -1,0 +1,8 @@
+// GENVAR DEF
+//!! WEIRD PROBLEM: IT SENSES OUT DEFINITION FROM FILE 02.VA!
+genvar i;
+analog begin
+    for (i = 0; i < 8; i = i + 1) begin
+        V(out[i]) <+ transition(value[i], td, tr);
+    end
+end

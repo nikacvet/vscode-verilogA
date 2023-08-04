@@ -1,0 +1,13 @@
+// BRANCH
+//!! FIX IT DOESNT SHOW ANYTHING
+electrical [3:5]a;
+electrical [1:3]b;
+branch (a,b) br1;
+
+// port branch
+module current_sink(p);
+    electrical p;
+    branch (<p>) probe_p;
+    analog
+    $strobe("current probed is %g", I(probe_p));
+endmodule

@@ -43,7 +43,6 @@ export class ANTLRBackend {
             parser.addErrorListener(syntaxError);
 
             // Parse the input
-            //!! FIX
             parser.veriloga_text();
 
             // Place errors in the diagnostic list

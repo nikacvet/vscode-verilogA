@@ -1,0 +1,6 @@
+nature current;
+    units = "A";
+    access = I;
+    idt_nature = charge;
+    abstol = 1u;
+endnature

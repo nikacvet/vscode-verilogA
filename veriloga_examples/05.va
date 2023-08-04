@@ -1,0 +1,42 @@
+// Conservative discipline
+discipline electrical;
+    potential Voltage;
+    flow Current;
+enddiscipline
+// Signal-flow disciplines
+discipline voltage;
+    potential Voltage;
+enddiscipline
+
+discipline current;
+    flow Current;
+enddiscipline
+
+module motorckt;
+    parameter real freq=100;
+    electrical gnd; ground gnd;
+    electrical drive;
+    rotational shaft;
+    motor m1 (drive, gnd, shaft);
+    vsine #(.freq(freq), .ampl(1.0)) v1 (drive, gnd);
+endmodule
+// vp: positive terminal [V,A]
+vn: negative terminal [V,A]
+// shaft:motor shaft [rad,Nm]
+// INSTANCE parameters
+// Km = motor constant [Vs/rad] Kf = flux constant [Nm/A]
+// j = inertia factor [Nms^2/rad] D= drag (friction) [Nms/rad]
+// Rm = motor resistance [Ohms] Lm = motor inductance [H]
+// A model of a DC motor driving a shaft
+module motor(vp, vn, shaft);
+    inout vp, vn, shaft;
+    electrical vp, vn;
+    rotational shaft;
+    parameter real Km = 4.5, Kf = 6.2;
+    parameter real j = 0.004, D = 0.1;
+    parameter real Rm = 5.0, Lm = 0.02;
+    analog begin
+        V(vp, vn) <+ Km*Theta(shaft) + Rm*I(vp, vn) + ddt(Lm*I(vp, vn));
+        Tau(shaft) <+ Kf*I(vp, vn) - D*Theta(shaft) - ddt(j*Theta(shaft));
+    end
+endmodule

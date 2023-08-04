@@ -3,15 +3,37 @@
 // Hover to view descriptions of existing attributes.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
-	"version": "0.2.0",
+	"version": "0.0.1",
     "configurations": [
+    
         {
             "name": "Extension",
             "type": "extensionHost",
             "request": "launch",
+            "runtimeExecutable": "${execPath}",
             "args": [
+                "--disable-extensions",
                 "--extensionDevelopmentPath=${workspaceFolder}"
-            ]
+            ],
+            "outFiles": ["${workspaceRoot}/dist/client/**/*.js"],
+            "preLaunchTask": {
+                "type": "npm",
+                "script": "webpack:dev"
+            }
+        },
+        {
+            "name": "Attach",
+            "type": "node",
+            "request": "attach",
+            "port": 6009,
+            "restart": true,
+            "outFiles": ["${workspaceRoot}/dist/server/**/*.js"]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Client + Server",
+            "configurations": ["Extension", "Attach"]
         }
     ]
 }

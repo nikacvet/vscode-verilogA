@@ -1,0 +1,16 @@
+// NATURE DEF
+//!! FIX DERIVED NATURES
+nature ttl_curr;
+    units = "A";
+    access = I;
+    abstol = 1u;
+endnature
+
+// An alias
+nature ttl_net_curr : ttl_curr;
+endnature
+// Deriving natures from disciplines
+nature new_curr : ttl_curr;
+    abstol = 1m;
+    maxval = 12.3;
+endnature

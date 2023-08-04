@@ -9,7 +9,7 @@ import { DiagnosticData, isDiagnosticDataUndefined } from './DiagnosticData';
  * Generates and takes in predefined runtime arguments,
  * and eventually parses the errors/warnings in `stdout` into `Diagnostic` array mapped to each unique document's uri.
  */
-export class OpenVAF extends DocumentCompiler {
+export class OpenVAFCompiler extends DocumentCompiler {
 /**
         Parses `stdout` into `Diagnostics` that are added to `collection` by adding each `Diagnostic` to an array
         The array is mapped in `collection` to the referred document's uri.

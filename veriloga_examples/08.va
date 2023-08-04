@@ -1,0 +1,25 @@
+// IMPLICIT NETS
+module top(i1, i2, o1, o2, o3);
+    input i1, i2;
+    output o1, o2, o3;
+    electrical i1, i2, o1, o2, o3;
+    // ab1, ab2, cb1, cb2 are implicit nets, not declared
+    //!! FIXXX FOR IMPLICIT NETS
+    blk_a a1( i1, ab1 );
+    blk_a a2( i2, ab2 );
+    blk_b b1( ab1, cb1 );
+    blk_b b2( ab2, cb2 );
+    blk_c c1( o1, o2, o3, cb1, cb2);
+endmodule
+
+// REAL NET DECLARATIONS
+//!! FIIXXX IT SHOULD BE WREAL IN
+module drv(in, out);
+    input in;
+    output out;
+    wreal in;
+    electrical out;
+    analog begin
+        V(out) <+ in;
+    end
+endmodule

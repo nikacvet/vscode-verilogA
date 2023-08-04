@@ -18,8 +18,6 @@ module_keyword : (MODULE | MACROMODULE)  ;
 include_compiler_directive : '`include' FILENAME ;
 
 
-
-
 // Lexer tokens
 MODULE : 'module';
 ENDMODULE : 'endmodule';
@@ -42,6 +40,7 @@ port : IDENTIFIER;
 lifetime : 'static' | 'automatic' ;
 
 module_item : port_declaration;
+
 
 
 

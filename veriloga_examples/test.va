@@ -75,8 +75,6 @@ end
 endmodule
 
 
-
-
 nature Current
     units = "A";
     access = I;
@@ -94,8 +92,6 @@ Change the value to "top" to prioritize snippets:
 "editor.snippetSuggestions": "top"
 
 */
-
-
 
 
 real lala = 1;

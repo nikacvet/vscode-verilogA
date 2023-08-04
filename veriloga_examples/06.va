@@ -1,0 +1,29 @@
+// DISCIPLINES
+discipline electrical;
+    domain continuous;
+    potential Voltage;
+    flow Current;
+enddiscipline
+// natureless discipline
+discipline ddiscrete;
+    domain discrete;
+enddiscipline
+// domainless discipline
+discipline domainless
+enddiscipline
+
+nature ttl_curr;
+    units = "A";
+    access = I;
+    abstol = 1u;
+endnature
+nature ttl_volt;
+    units = "V";
+    access = V;
+    abstol = 100u;
+endnature
+discipline ttl;
+    potential ttl_volt;
+    flow ttl_curr;
+    flow.abstol = 10u; // OVERRIDE NATURE ATTRIBUTES FROM DISCIPLINE
+enddiscipline

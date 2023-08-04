@@ -1,0 +1,14 @@
+// GROUND DEF
+//!! FIX GND IS SUPPOSED TO BE GROUND
+module loadedsrc(in, out);
+    input in;
+    output out;
+    electrical in, out;
+    electrical gnd;
+    ground gnd;
+    parameter real srcval = 5.0;
+    resistor #(.r(10K)) r1(out,gnd);
+    analog begin
+        V(out) <+ V(in,gnd)*2;
+    end
+endmodule

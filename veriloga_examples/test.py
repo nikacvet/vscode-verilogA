@@ -9,6 +9,7 @@ haha = 3
 if a/b > c: print("aaa")
 
 print("abs",a,b,c)
+a,b,c = 1,2,3
 
-
+haha = a + b + c
 # haha

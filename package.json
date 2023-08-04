@@ -6,11 +6,22 @@
   "engines": {
     "vscode": "^1.79.0"
   },
+  "publisher": "wonderfuloceans",
+    "author": {
+        "name": "Nika Cvetanovski",
+        "email": "nika.cvetanovski@gmail.com"
+    },
+  "activationEvents": [
+    "onLanguage:veriloga",
+    "workspaceContains:**/*.{va}"
+],
+"main": "./dist/client/extension",
   "categories": [
     "Programming Languages",
     "Snippets",
     "Formatters"
   ],
+  "icon": "images/icon_light.png",
   "contributes": {
     "languages": [
       {
@@ -22,6 +33,10 @@
         "extensions": [
           ".va"
         ],
+        "icon": {
+          "light": "./images/icon_light.png",
+          "dark": "./images/icon_dark.png"
+        },
         "configuration": "./language-configuration.json"
       }
     ],
@@ -32,6 +47,103 @@
         "path": "./syntaxes/veriloga.tmLanguage.json"
       }
     ],
+    "configuration":[
+      {
+        "title": "Verilog A Language Server",
+        "properties": {
+          "veriloga.trace.server": {
+            "type": "string",
+            "enum": [
+                "off",
+                "messages",
+                "verbose"
+            ],
+            "default": "verbose",
+            "description": "Traces the communication between VS Code and the Verilog A language server."
+          },
+          "veriloga.verifyOnOpen": {
+            "type": "boolean",
+            "default": true,
+            "description": "Run ANTLR verification on all files when opened."
+          },
+          "veriloga.disableIndexing": {
+            "type": "boolean",
+            "default": false,
+            "description": "Disable automatic indexing when opening a folder or workspace."
+          },
+          "veriloga.parallelProcessing": {
+              "type": "integer",
+              "default": 10,
+              "description": "The number of files the extension should attempt to process in parallel. Processing consist of opening found files and perform matching to find symbols."
+          },
+          "veriloga.includeIndexing": {
+              "type": "array",
+              "default": [
+                  "**/*.{va}"
+              ],
+              "description": "Files included for indexing (glob pattern). Examples: \n  - Include files within the workspace's rtl folder ('*' at front of pattern denotes that path is relative to workspace root): **/rtl/**/*.{sv,v,svh,vh}\n  - Add all files with a '.svp' extension: **/*.svp\n  - Add files only when in a specific workspace: /abs/path/to/workspace/rtl/**/*.{sv,v,svh,vh}"
+          },
+          "veriloga.excludeIndexing": {
+              "type": "string",
+              "default": "",
+              "description": "Files excluded from indexing (glob pattern)."
+          },
+          "veriloga.forceFastIndexing": {
+              "type": "boolean",
+              "default": false,
+              "description": "Force indexing to use fast regular expression parsing."
+          },
+          "veriloga.enableIncrementalIndexing": {
+              "type": "boolean",
+              "default": true,
+              "description": "Enable incremental indexation as you open files."
+          },
+          "veriloga.maxLineCountIndexing": {
+              "type": "integer",
+              "default": 2000,
+              "description": "When indexing a file, if the line count is larger than this number, fast indexing will be used to improve symbol lookup performance."
+          },
+          "veriloga.documentSymbolsPrecision": {
+              "type": "string",
+              "enum": [
+                  "full",
+                  "full_no_references",
+                  "declaration",
+                  "fast"
+              ],
+              "default": "full",
+              "description": "The level of detail the parser should use when looking for symbols:\n  - 'full': detect blocks, ports, parameters, classes, methods, typedefs, defines, labels, instantiations, assertions, and references\n  - 'full_no_references': detect blocks, ports, parameters, classes, methods, typedefs, defines, labels, instantiations, and assertions\n  - 'declarations': detect blocks, ports, parameters, classes, methods, typedefs, and defines\n  - 'fast': detect only common blocks (module, class, interface, package, program) without hierarchy"
+          },
+          "veriloga.compilerType": {
+              "type": "string",
+              "enum": [
+                  "OpenVAF"
+              ],
+              "default": "OpenVAF",
+              "description": "Select the compiler type from the drop down list."
+          },
+          "veriloga.excludeCompiling": {
+              "type": "string",
+              "default": "",
+              "description": "Files excluded from compiling (glob pattern)."
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+          "command": "veriloga.build_index",
+          "title": "Verilog A: Build index of modules in workspace"
+      },
+      {
+          "command": "veriloga.auto_instantiate",
+          "title": "Verilog A: Auto instantiate modules in workspace"
+      },
+      {
+          "command": "veriloga.compile",
+          "title": "Verilog A: Compile the opened document"
+      }
+  ],
     "snippets": [
       {
         "language": "veriloga",
@@ -41,11 +153,16 @@
   },
   "scripts": {
     "compile": "npm run compile:antlr4ts && tsc --project ./",
-    "compile:antlr4ts": "antlr4ts -visitor -Xexact-output-dir -o ./src/compiling/grammar/build ./src/compiling/grammar/VerilogA.g4"
+    "compile:antlr4ts": "antlr4ts -visitor -Xexact-output-dir -o ./src/compiling/grammar/build ./src/compiling/grammar/VerilogA.g4",
+    "webpack:dev": "webpack --mode none --config ./build/client.webpack.config.js && webpack --mode none --config ./build/server.webpack.config.js",
+    "webpack": "webpack --mode production --config ./build/client.webpack.config.js && webpack --mode production --config ./build/server.webpack.config.js"
+
   },
   "dependencies": {
     "antlr4ts": "^0.5.0-alpha.4",
     "uri-js": "^4.4.1",
+    "glob": "^7.2.0",
+    "glob-to-regexp": "^0.4.1",
     "vscode-languageclient": "^7.0.0",
     "vscode-languageserver": "^7.0.0",
     "vscode-languageserver-textdocument": "^1.0.4"
@@ -53,8 +170,14 @@
   "devDependencies": {
     "@types/node": "^20.4.4",
     "@types/vscode": "^1.80.0",
+    "@types/glob": "^7.2.0",
     "antlr4ts-cli": "^0.5.0-alpha.4",
     "js-yaml": "^4.1.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "merge-options": "^3.0.4",
+    "ts-loader": "^9.2.8",
+    "ts-node": "^10.7.0"
   }
 }
