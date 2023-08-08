@@ -22,7 +22,7 @@ This is a Visual Studio Code extension, which provides support for the Verilog A
 
 ## Known Issues
 
-Issues, probably many. Known issues? Not at the moment. Do let me know if you find one though (*and I'm sure you will*)
+Issues, probably some. Known issues? Not at the moment. Do let me know when you find one though.
 
 ## Release Notes
 
