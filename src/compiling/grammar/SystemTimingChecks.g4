@@ -1,5 +1,5 @@
 grammar SystemTimingChecks;
-import Expressions;
+import ConcatenationsAndAssignmentPatterns;
 
 system_timing_check : setup_timing_check
                    | hold_timing_check
@@ -76,4 +76,4 @@ scalar_timing_check_condition : expression
   | expression '===' scalar_constant
   | expression '!=' scalar_constant
   | expression '!==' scalar_constant ;
-scalar_constant : ONE? APOSTROPHE B ( ZERO | ONE ) | ONE | ZERO ;
+scalar_constant : ONE? APOSTROPHE B ( ZERO | ONE ) | ONE | ZERO;

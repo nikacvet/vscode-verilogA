@@ -24,4 +24,3 @@ block_variable_type : variable_identifier dimension?;
 
 block_real_type : real_identifier dimension?;
 
-attribute_instance : '{' attribute_instance '}' ; // Replace with appropriate definition

@@ -53,4 +53,4 @@ statement : '{' attribute_instance? blocking_assignment ';'
 statement_or_null : statement
                   | '{' attribute_instance? '}';
 
-function_statement1 : statement;
+function_statement : statement;

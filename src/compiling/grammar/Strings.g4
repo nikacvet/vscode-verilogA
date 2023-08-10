@@ -1,4 +1,4 @@
 grammar Strings;
-import Attributes;
+import AnalogReferences;
 
 string_literal : STRING_LITERAL;

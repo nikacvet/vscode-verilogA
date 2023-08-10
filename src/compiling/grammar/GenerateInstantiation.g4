@@ -1,9 +1,7 @@
 grammar GenerateInstantiation;
 import UDPDeclaration;
 
-
-
-generate_region : 'generate' '{' module_or_generate_item+ '}' 'endgenerate';
+generate_region : 'generate' '{' module_or_generate_item '}' 'endgenerate';
 genvar_declaration : 'genvar' list_of_genvar_identifiers ';';
 list_of_genvar_identifiers : genvar_identifier (',' genvar_identifier)*;
 analog_loop_generate_statement : 'for' '(' genvar_initialization ';' genvar_expression ';' genvar_iteration ')' analog_statement;

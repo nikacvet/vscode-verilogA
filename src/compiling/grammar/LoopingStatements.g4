@@ -1,5 +1,5 @@
 grammar LoopingStatements;
-import SpecifyBlockDeclaration;
+import TaskEnableStatements;
 
 
 analog_loop_statement : 'repeat' '(' analog_expression ')' analog_statement

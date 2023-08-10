@@ -1,9 +1,6 @@
 grammar ModuleInstantiation;
 import GenerateInstantiation;
 
-
-
-
 module_instantiation : module_or_paramset_identifier (parameter_value_assignment)?
                         module_instance (',' module_instance)* ';';
 parameter_value_assignment : '#' '(' list_of_parameter_assignments ')';
