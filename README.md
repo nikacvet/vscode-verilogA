@@ -13,7 +13,7 @@ This is a Visual Studio Code extension, which provides support for the Verilog A
 ### Hover
 ![Hover Example](images/hover.gif)
 
-### Go To Definition
+### Go To Definition / Reference
 ![Go To Example](images/goto.gif)
 
 
