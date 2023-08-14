@@ -19,3 +19,7 @@ net_lvalue : hierarchical_net_identifier ('[' constant_expression ']')? ('[' con
 
 variable_lvalue : hierarchical_variable_identifier ('[' expression ']')? ('[' range_expression ']')
                   | '{' variable_lvalue (',' variable_lvalue)* '}';
+//TODO check if valid
+array_variable_identifier: identifier;
+array_analog_variable_lvalue: array_variable_identifier
+                            | array_variable_identifier '[' analog_expression ']' '{' '[' analog_expression ']' '}';

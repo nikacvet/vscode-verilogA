@@ -1,8 +1,6 @@
 grammar DisciplineDeclaration;
 import ParamsetDeclaration;
 
-
-
 discipline_declaration: 'discipline' discipline_identifier ';'? '{' discipline_item '}' 'enddiscipline';
 discipline_item: nature_binding
                | discipline_domain_binding

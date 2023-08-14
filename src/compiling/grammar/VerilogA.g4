@@ -1,4 +1,4 @@
 grammar VerilogA;
-import VerilogASourceText;
+import LibrarySourceText;
 
 veriloga_text : source_text EOF;

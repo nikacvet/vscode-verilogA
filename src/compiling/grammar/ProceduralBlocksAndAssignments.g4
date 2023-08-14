@@ -7,6 +7,10 @@ analog_procedural_assignment : analog_variable_assignment ';';
 analog_variable_assignment : scalar_analog_variable_assignment
                             | array_analog_variable_assignment;
 scalar_analog_variable_assignment : scalar_analog_variable_lvalue '=' analog_expression;
+//TODO: check if valid
+scalar_analog_variable_lvalue: scalar_variable_identifier;
+scalar_variable_identifier: real_identifier | string_literal;
+
 initial_construct : 'initial' statement;
 always_construct : 'always' statement;
 blocking_assignment : variable_lvalue '=' '[' delay_or_event_control ']' expression;

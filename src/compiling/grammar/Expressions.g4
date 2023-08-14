@@ -17,7 +17,7 @@ analog_expression : analog_primary
 
 base_expression : expression;
 
-conditional_expression : expression1 '?' attribute_instance? expression2 ':' expression3;
+//conditional_expression : expression1 '?' attribute_instance? expression2 ':' expression3;
 
 constant_base_expression : constant_expression;
 
@@ -33,6 +33,13 @@ analysis_or_constant_expression : constant_primary
                                  | unary_operator attribute_instance? analysis_or_constant_primary
                                  | analysis_or_constant_expression binary_operator attribute_instance? analysis_constant_expression
                                  | analysis_or_constant_expression '?' attribute_instance? analysis_or_constant_expression ':' analysis_or_constant_expression;
+//TODO check if valid
+analysis_or_constant_primary: constant_primary
+                           | analysis_function_call
+                           | unary_operator attribute_instance? analysis_or_constant_primary;
+analysis_constant_expression: analysis_or_constant_expression
+                           | analysis_or_constant_expression '?' attribute_instance? analysis_or_constant_expression ':' analysis_or_constant_expression;
+
 
 constant_mintypmax_expression : constant_expression
                                 | constant_expression ':' constant_expression ':' constant_expression;
@@ -47,11 +54,11 @@ dimension_constant_expression : constant_expression;
 expression : primary
              | unary_operator attribute_instance? primary
              | expression binary_operator attribute_instance? expression
-             | conditional_expression;
+             | expression '?' attribute_instance? expression ':' expression;
 
-expression1 : expression;
-expression2 : expression;
-expression3 : expression;
+// expression1 : expression;
+// expression2 : expression;
+// expression3 : expression;
 
 indirect_expression : branch_probe_function_call
                        | port_probe_function_call
@@ -90,3 +97,5 @@ range_expression : expression
 
 width_constant_expression : constant_expression;
 
+constant_param_arrayinit: '{' constant_param_assignment (',' constant_param_assignment)* '}';
+constant_param_assignment: constant_expression | parameter_reference;

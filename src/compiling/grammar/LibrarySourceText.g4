@@ -1,7 +1,7 @@
 grammar LibrarySourceText;
 import VerilogASourceText;
 
-
+file_path: string_literal;
 
 library_text: library_description*;
 library_description: library_declaration

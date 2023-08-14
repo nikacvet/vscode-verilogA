@@ -4,10 +4,10 @@ import FunctionCalls;
 analog_concatenation: '{' analog_expression (',' analog_expression)* '}';
 
 analog_multiple_concatenation: '{' constant_expression analog_concatenation '}';
-
+//TODO check if valid
 analog_filter_function_arg: parameter_identifier
                          | parameter_identifier '[' msb_constant_expression ':' lsb_constant_expression ']'
-                         | constant_optional_arrayinit;
+                         | constant_arrayinit;
 
 concatenation: '{' expression (',' expression)* '}';
 

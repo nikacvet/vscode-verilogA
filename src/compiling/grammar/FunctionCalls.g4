@@ -38,6 +38,13 @@ noise_table_input_arg: parameter_identifier
                     | string_literal
                     | constant_arrayinit;
 
+//TODO check if valid
+constant_arrayinit: '{' constant_arrayinit_element (',' constant_arrayinit_element)* '}';
+constant_arrayinit_element: parameter_identifier
+                        | parameter_identifier '[' msb_constant_expression ':' lsb_constant_expression ']'
+                        | string_literal
+                        | constant_arrayinit;
+
 laplace_filter_name: 'laplace_zd' | 'laplace_zp' | 'laplace_np' | 'laplace_nd';
 
 zi_filter_name: 'zi_zp' | 'zi_zd' | 'zi_np' | 'zi_nd';

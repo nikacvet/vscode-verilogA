@@ -2,28 +2,34 @@ grammar AnalogReferences;
 import Attributes;
 
 
-analog_concatenation: '{' analog_expression (',' analog_expression)* '}';
+nature_attribute_reference: net_identifier '.' potential_or_flow '.' nature_attribute_identifier;
+analog_port_reference: port_identifier
+                      | port_identifier '[' constant_expression ']'
+                      | hierarchical_port_identifier
+                      | hierarchical_port_identifier '[' constant_expression ']';
+analog_net_reference: port_identifier
+                    | port_identifier '[' constant_expression ']'
+                    | net_identifier
+                    | net_identifier '[' constant_expression ']'
+                    | hierarchical_port_identifier
+                    | hierarchical_port_identifier '[' constant_expression ']'
+                    | hierarchical_net_identifier
+                    | hierarchical_net_identifier '[' constant_expression ']';
+branch_reference: hierarchical_branch_identifier
+                | hierarchical_branch_identifier '[' constant_expression ']'
+                | hierarchical_unnamed_branch_reference;
+hierarchical_unnamed_branch_reference: hierarchical_inst_identifier '.branch' '(' branch_terminal ( ',' branch_terminal )? ')'
+                                      | hierarchical_inst_identifier '.branch' '(' '<' port_identifier '>' ')'
+                                      | hierarchical_inst_identifier '.branch' '(' '<' hierarchical_port_identifier '>' ')';
+parameter_reference: parameter_identifier
+                   | parameter_identifier '[' analog_expression ']';
+variable_reference: variable_identifier
+                 | variable_identifier '[' analog_expression ']' ( '{' '[' analog_expression ']' '}')?
+                 | real_identifier
+                 | real_identifier '[' analog_expression ']' ( '{' '[' analog_expression ']' '}')?;
+net_reference: hierarchical_net_identifier
+             | hierarchical_net_identifier '[' analog_range_expression ']'
+             | hierarchical_port_identifier
+             | hierarchical_port_identifier '[' analog_range_expression ']';
 
-analog_multiple_concatenation: '{' constant_expression analog_concatenation '}';
 
-analog_filter_function_arg: parameter_identifier
-                         | parameter_identifier '[' msb_constant_expression ':' lsb_constant_expression ']'
-                         | constant_optional_arrayinit;
-
-concatenation: '{' expression (',' expression)* '}';
-
-constant_concatenation: '{' constant_expression (',' constant_expression)* '}';
-
-constant_multiple_concatenation: '{' constant_expression constant_concatenation '}';
-
-module_path_concatenation: '{' module_path_expression (',' module_path_expression)* '}';
-
-module_path_multiple_concatenation: '{' constant_expression module_path_concatenation '}';
-
-multiple_concatenation: '{' constant_expression concatenation '}';
-
-assignment_pattern: '{' expression (',' expression)* '}'
-                  | '{' constant_expression expression (',' expression)* '}';
-
-constant_assignment_pattern: '{' constant_expression (',' constant_expression)* '}'
-                          | '{' constant_expression constant_expression (',' constant_expression)* '}';
