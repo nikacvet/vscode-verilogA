@@ -8,16 +8,13 @@ This is a Visual Studio Code extension, which provides support for the Verilog A
 ## Features
 
 ### Syntax Highlighting
-// insert png
+![Syntax Highlighting Example](images/highlight.png)
 
 ### Hover
-// gif
+![Hover Example](images/hover.gif)
 
 ### Go To Definition
-
-// gif
-### Find References
-// gif
+![Go To Example](images/goto.gif)
 
 
 ## Known Issues
@@ -34,3 +31,4 @@ Currently in development.
 - Better hover information.
 - Fix *(all)* bugs *(is that even possible?)*
 - Compile with OpenVAF
+- more grammar information
