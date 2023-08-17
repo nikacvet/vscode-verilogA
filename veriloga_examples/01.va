@@ -6,3 +6,12 @@ analog begin
         V(out[i]) <+ transition(value[i], td, tr);
     end
 end
+
+module test(in, out);
+
+electrical in, out;
+input in;
+output out;
+    
+endmodule
+

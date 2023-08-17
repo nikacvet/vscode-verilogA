@@ -1,0 +1,10 @@
+{
+    "ddt": {
+        "description": "Returns the time-derivative of x, where x is expr.",
+        "options": "ddt(expr,abstol): absolute tolerance is explicitly specified.\nddt(expr,nature): nature is explicitly specified."
+    },
+    "idt": {
+        "description": "Returns the integral of the function x(τ) with respect to τ between the limits 0 and t0, plus a constant c. x(τ) is the value of expr at time τ, t0 is the start time of the simulation, t is the current time, and c is the initial starting point as determined by the simulator and is generally the DC value (the value that makes expr equal to zero)." ,
+        "options": "idt(expr,ic): C is the value of ic at t0.\nidt(expr,ic,assert): c is the value of ic at t0, which is the time when assert was last nonzero or t0 if assert was never nonzero.\nidt(expr,ic,assert,abstol): Same as idt(expr,ic,assert) except the absolute tolerance used to control the error in the numerical integration process is specified explicitly with abstol.\nidt(expr,ic,assert,nature): Same as idt(expr,ic,assert), except the absolute tolerance used to control the error in the numerical integration process is take from the specified nature."
+    }
+}

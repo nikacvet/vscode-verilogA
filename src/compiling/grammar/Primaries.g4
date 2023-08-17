@@ -29,7 +29,7 @@ constant_primary : number
                  | constant_system_function_call
                  | constant_analog_built_in_function_call
                  | '(' constant_mintypmax_expression ')'
-                 | STRING
+                 | string_literal
                  | system_parameter_identifier
                  | nature_attribute_reference
                  | constant_analog_function_call;

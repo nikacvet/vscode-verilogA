@@ -3,7 +3,7 @@ import Primaries;
 
 abstol_expression : constant_expression | nature_identifier;
 
-analog_conditional_expression : analog_expression '?' attribute_instance? analog_expression ':' analog_expression;
+analog_conditional_expression : expression '?' attribute_instance? expression ':' expression;
 
 analog_range_expression : analog_expression | msb_constant_expression ':' lsb_constant_expression;
 
@@ -74,7 +74,7 @@ lsb_constant_expression : constant_expression;
 mintypmax_expression : expression
                         | expression ':' expression ':' expression;
 
-module_path_conditional_expression : module_path_expression '?' attribute_instance? module_path_expression ':' module_path_expression;
+module_path_conditional_expression : expression '?' attribute_instance? expression ':' expression;
 
 module_path_expression : module_path_primary
                          | unary_module_path_operator attribute_instance? module_path_primary
