@@ -28,7 +28,7 @@ export function getSymbolKind(name: string): SymbolKind {
     if (name.indexOf('[') !== -1) {
         return SymbolKind.Array;
     }
-    switch (name) {
+switch (name) {
         case 'parameter':
         case 'localparam':
         case 'Constant':

@@ -13,3 +13,12 @@ a,b,c = 1,2,3
 
 haha = a + b + c
 # haha
+
+
+class Foo():
+    '''
+    class hahah 
+    
+    '''
+    def __init__(self) -> None:
+        pass

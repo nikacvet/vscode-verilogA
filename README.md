@@ -1,9 +1,10 @@
 # Verilog A Language Support
 
 This is a Visual Studio Code extension, which provides support for the Verilog A language.
+**This extension is still in development.**
 
-**It's still heavy in development.**
 
+*Special thanks to [eirikpre's SystemVerilog Extension](https://github.com/eirikpre/VSCode-SystemVerilog), as it was of greatest help.*
 
 ## Features
 
@@ -17,15 +18,15 @@ This is a Visual Studio Code extension, which provides support for the Verilog A
 ![Go To Example](images/goto.gif)
 
 
-## Known Issues
+## Issues
 
-Issues, probably some. Known issues? Not at the moment. Do let me know when you find one though.
+*NOTE*: As someone who doesn't program in VerilogA at all, I have tried my best to grasp the syntax and rules. Still, I most likely missed some things, so if you see something that is not aligned with standards or doesn't work the way it should, please let me know!
+
+I also appreaciate contribution. If you want to contribute please fork the repository, clone it and make changes, then create a PR.
 
 ## Release Notes
 
 See the [changelog](CHANGELOG.md) for more details
-
-Currently in development.
 
 ## Future
 - Better hover information.

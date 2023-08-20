@@ -61,6 +61,15 @@ export class VerilogAParser {
             .join(''),
         'mg'
     );
+    private functions = new RegExp(
+        [
+            // /(?<type>(idt|ddt))\((?<args>.*?)\)/
+            /(?<type>(idt|ddt))(?=\()/
+        ]
+            .map((x) => (typeof x === 'string' ? x : x.source))
+            .join(''),
+        'g' // Flags: 'm' for multiline, 'g' for global
+    );
 
     private r_typedef = new RegExp(
         [
@@ -194,7 +203,9 @@ export class VerilogAParser {
         this.r_label,
         this.r_instantiation,
         this.r_assert,
+        //this.functions,
         this.r_potential_reference
+        
     ];
 
     // Used to save time in DocumentSymbolProvider, because references are not needed in that mode
@@ -204,7 +215,8 @@ export class VerilogAParser {
         this.r_define,
         this.r_label,
         this.r_instantiation,
-        this.r_assert
+        this.r_assert,
+        //this.functions
     ];
 
     public readonly declaration_parse = [

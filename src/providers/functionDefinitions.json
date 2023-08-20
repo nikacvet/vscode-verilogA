@@ -1,10 +1,350 @@
-{
+{   
+    "above": {
+        "definitions": {
+            "above ( expr [ , time_tol [ , expr_tol [ , enable ] ] ] )":""
+        },
+        "description": "Generates a monitored analog event to detect threshold crossings in analog signals when the expression crosses zero (0) from below and controls the timestep to accurately resolve the crossing during transient analysis.",
+        "parameters": {
+            "expr":"Expression.",
+            "time_tol (optional)":"Time tolerance.",
+            "expr_tol (optional)": "Expression tolerance.",
+            "enable (optional)": "If specified and nonzero, the function generates an event at threshold crossings and acts to control the timestep. If specified and is zero, the function is inactive."
+        }
+
+    },
+    "abs": {
+        "definitions": {
+            "abs ( x )":""
+        },
+        "description": "Absolute of *x*.",
+        "parameters": {
+            "x": "Should be numeric. If operand is *real*, the result is also *real*. Domain is *```all x```*."
+        }
+    },
+    "absdelay":{
+        "definitions": {
+            "absdelay ( input , td [ , maxdelay ] )":""
+        },
+        "description": "In DC and operating point analyses, absdelay() returns the value of its input. In AC and other small-signal analyses, the absdelay() operator phase-shifts the input expression to the output of the delay operator.",
+        "parameters": {
+            "input": "*```input```* is delayed by the amount *```td```*.",
+            "td": "The transport delay *```td```* can be either constant (typical case) or vary as a function of time (when *```maxdelay```* is defined). In all cases *```td```* shall be a positive number.",
+            "maxdelay (optional)": "If specified, *```maxdelay```* is used as a substitute for *```td```*. If *```maxdelay```* is not specified, the value of *```td```* when the absdelay() is first evaluated shall be used and any future changes to *```td```* shall be ignored."
+        }
+    },
+    "absdelta": {
+        "definitions": {
+            "absdelta ( expr , delta [ , time_tol [ , expr_tol [ , enable ] ] ] )": ""
+        },
+        "description": "The **absdelta()** function generates events for the following times and conditions.\n - During initialization or dc sweep analysis.\n - When the enable argument changes from zero to non-zero.\n - When the *```expr```* value changes in absolute value by more than *```delta```*, relative to the previous **absdelta()** event (but not when the current time is within *```time_tol```* of the previous **absdelta()** event). The simulator is allowed to schedule this event at any time between the time corresponding to the interpolated absolute change of (*```delta - expr_tol```*) and the time corresponding to the interpolated absolute change of (*```delta + expr_tol```*) for performance or other reasons.\n - When *```expr```* changes direction (but not when the amount of the change is less than *```expr_tol```*).",
+        "parameters": {
+            "expr":"Expression.",
+            "delta": "Analog expression. Should be nonnegative. If *```delta```* is set to zero, an event is generated every timestep the expression value changes with zero tolerances. *```expr_tol```* and *```time_tol```*, if specified, will have no effect and be ignored. Generating events on every value change may severely impact simulation performance and so setting delta to zero should only be done with great care.",
+            "time_tol (optional)": "Time tolerance is specified as a constant expression. A specified *```time_tol```* that is smaller than the time precision is ignored and the time precision is used instead.",
+            "expr_tol (optional)":"Expression tolerance is specified as a constant expression. Specifies the largest difference in *```expr```* that you consider negligible. If the tolerances are not specified, then the tool (e.g., the simulator) sets them.",
+            "enable (optional)":"Analog expression, shall evaluate to an integer. If specified and nonzero, the function generates events. If specified and is zero, the function is inactive."
+        }
+    },
+    "acos": {
+        "definitions": {
+            "acos ( x )": ""
+        },
+        "description": "Arc-cosine of *x*. Return values are in radians.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand. Domain is *```-1 <= x <= 1```*."
+        }
+    },
+    "acosh": {
+        "definitions": {
+            "acosh ( x )": ""
+        },
+        "description": "Arc-hyperbolic cosine of *x*.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```x >= 1```*."
+        }
+    },
+    "ac_stim": {
+        "definitions": {
+            "ac_stim ( [ analysis_name [ , mag [ , phase ] ] ] )":""
+        },
+        "description": "The AC stimulus function returns zero (0) during large-signal analyses (such as DC and transient) as well as on all small-signal analyses using names which do not match *```analysis_name```*. When the name of the small-signal analysis matches *```analysis_name```*, the source becomes active and models a source with magnitude *```mag```* and *```phase```* phase.",
+        "parameters": {
+            "analysis_name": "Default is *ac*.",
+            "mag (optional)": "Default is one(1).",
+            "phase (optional)": "Default is zero(0). If specified, it's given in radians."
+        }
+    },
+    "analysis": {
+        "definitions": {
+            "analysis ( analysis_list )": ""
+        },
+        "description": "Takes one or more string arguments and returns one (1) if any argument matches the current *```analysis type```*. Otherwise it returns zero (0).",
+        "parameters": {
+            "analysis_list": "There is no fixed set of analysis types. However, **simulators use the following names:**\n - '*ac*': .AC analysis\n - '*dc*': .OP or .DC analysis (single point or dc sweep analysis)\n - '*noise*': .NOISE analysis\n - '*tran*': .TRAN analysis\n - '*ic*': The initial-condition analysis which precedes a transient analysis.\n - '*static*': Any equilibrium point calculation\n - '*nodeset*': The phase during an equilibrium point calculation where nodesets are forced."
+        }
+    },
+    "asin": {
+        "definitions": {
+            "asin ( x )": ""
+        },
+        "description": "Arc-sine of *x*. Return values are in radians.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```-1 <= x <= 1```*."
+        }
+
+    },
+    "asinh": {
+        "definitions": {
+            "asinh ( x )": ""
+        },
+        "description": "Arc-hyperbolic sine of *x*.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*."
+        }
+    },
+    "atan": {
+        "definitions": {
+            "atan ( x )": ""
+        },
+        "description": "Arc-tangent of *x*. Return values are in radians.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*."
+        }
+    },
+    "atan2": {
+        "definitions": {
+            "atan2 ( x, y )": ""
+        },
+        "description": "Arc-tangent of *y/x*. Return values are in radians.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*.",
+            "y": "Numeric (*integer* or *real*) operand.  Domain is *```all y```*."
+        }
+    },
+    "atanh": {
+        "definitions": {
+            "atanh ( x )": ""
+        },
+        "description": "Arc-hyperbolic tangent of *x*.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```-1 < x < 1```*."
+        }
+    },
+    "ceil": {
+        "definitions": {
+            "ceil ( x )": ""
+        },
+        "description": "Ceils *x*-",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*."
+        }
+    },
     "ddt": {
-        "description": "Returns the time-derivative of x, where x is expr.",
-        "options": "ddt(expr,abstol): absolute tolerance is explicitly specified.\nddt(expr,nature): nature is explicitly specified."
+        "definitions": {
+            "ddt(expr)": "",
+            "ddt(expr, abstol)": "",
+            "ddt(expr, nature)": ""
+        },
+        "description": "Returns the time-derivative of *```x```*, where *```x```* is *```expr```*.",
+        "parameters": {
+            "expr": "Expression.",
+            "abstol (optional)": "Specifies the explicit absolute tolerance.",
+            "nature (optional)": "Specifies the explicit absolute tolerance."
+        }
     },
     "idt": {
-        "description": "Returns the integral of the function x(τ) with respect to τ between the limits 0 and t0, plus a constant c. x(τ) is the value of expr at time τ, t0 is the start time of the simulation, t is the current time, and c is the initial starting point as determined by the simulator and is generally the DC value (the value that makes expr equal to zero)." ,
-        "options": "idt(expr,ic): C is the value of ic at t0.\nidt(expr,ic,assert): c is the value of ic at t0, which is the time when assert was last nonzero or t0 if assert was never nonzero.\nidt(expr,ic,assert,abstol): Same as idt(expr,ic,assert) except the absolute tolerance used to control the error in the numerical integration process is specified explicitly with abstol.\nidt(expr,ic,assert,nature): Same as idt(expr,ic,assert), except the absolute tolerance used to control the error in the numerical integration process is take from the specified nature."
+        "definitions": {
+            "idt(expr)": "",
+            "idt(expr, ic)": "",
+            "idt(expr, ic, assert)": "",
+            "idt(expr, ic, assert, abstol)": "",
+            "idt(expr, ic, assert, nature)": ""
+        },
+        "description": "Returns *```∫t x(τ) dτ + c```* between the limits *```t```* and *```t0```*, where *```x(τ)```* is the value of *```expr```* at time *```τ```*, *```t0```* is the start time of the simulation, *```t```* is the current time, and *```c```* is the initial starting point as determined by the simulator and is generally the DC value (the value that makes expr equal to zero).",
+        "parameters": {
+            "expr": "Expression.",
+            "ic (optional)": "Constant value at *```t0```*.",
+            "assert (optional)": "Value of *```ic```* at *```t0```* if assert was last nonzero, else at *```t0```*.",
+            "abstol (optional)": "Specifies the explicit absolute tolerance for controlling the error in the numerical integration process.",
+            "nature (optional)": "Specifies the explicit absolute tolerance for controlling the error in the numerical integration process."
+        }
+    },
+    "idtmod": {
+        "definitions": {
+            "idtmod(expr)": "",
+            "idtmod(expr, ic)": "",
+            "idtmod(expr, ic, modulus)": "",
+            "idtmod(expr, ic, modulus, offset)": "",
+            "idtmod(expr, ic, modulus, offset, abstol)": "",
+            "idtmod(expr, ic, modulus, offset, nature)": ""
+        },
+        "description": "Returns *```∫t x(τ) dτ + c```* between the limits *```t```* and *```t0```*, where *```x(τ)```* is the value of expr at time *```τ```*, *```t0```* is the start time of the simulation, *```t```* is the current time, and *```c```* is the initial starting point as determined by the simulator and is generally the DC value (the value that makes expr equal to zero).",
+        "parameters":{
+            "expr":"Expression.",
+            "ic (optional)":"Constant value at *```t0```*.",
+            "modulus (optional)": "Returns *```k```*, where *```0 ≤ k < modulus```* and *```k```* is *```∫t x ( τ ) dτ + c = n × modulus + k , n = ... –3, –2, –1, 0, 1, 2, 3 ...```*, and *```c```* is the value of *```ic```* at *```t0```*.",
+            "offset (optional)": "Returns *```k```*, where *```offset ≤ k < offset + modulus```* and *```k```* is *```∫t x ( τ ) dτ + ic = n × modulus + k```*, and *```c```* is the value of *```ic```* at *```t0```*.",
+            "abstol (optional)":"Specifies the explicit absolute tolerance for controlling the error in the numerical integration process.",
+            "nature (optional)":"Specifies the explicit absolute tolerance for controlling the error in the numerical integration process."
+        }
+    },
+    "ddx": {
+        "definitions": {
+            "ddx(expr, unknown_quantity)": ""
+        },
+        "description": "Returns the partial derivative of its first argument with respect to the unknown indicated by the second argument, holding all other unknowns fixed and evaluated at the current operating point. The second argument shall be the potential of a scalar net or port or the flow through a branch, because these are the unknown variables in the system of equations for the analog solver.",
+        "parameters": {
+            "expr":"Expression.",
+            "unknown_quantity": "The branch probe (voltage or current probe) with respect to which the derivative of the expression needs to be computed."
+        }
+    },
+    
+    "transition": {
+        "definitions":{
+            "transition ( expr [ , td [ , rise_time [ , fall_time [ , time_tol ] ] ] ] )": ""
+        },
+        "description": "Returns a real number which describes a piecewise linear function over time.",
+        "parameters": {
+            "expr":"Expression. The input expression is expected to evaluate over time to a piecewise constant waveform.",
+            "td (optional)": "The transport delay. If *```td```* is not specified, it is taken to be zero (0.0).",
+            "rise_time (optional)": "Rise time. If only a positive *```rise_time value```* is specified, the simulator uses it for both rise and fall times. If not specified or equal to zero, the value defaults to the value defined by **‘default_transition.**",
+            "fall_time (optional)": "Fall time. If not specified or equal to zero, the value defaults to the value defined by **‘default_transition.**",
+            "time_tol (optional)": "If not specified, the transition function causes the simulator to assure each transition is adequately resolved."
+        }
+    },
+    "slew": {
+        "definitions": {
+            "slew ( expr [ , max_pos_slew_rate [ , max_neg_slew_rate ] ] )": ""
+        },
+        "description": "Forces all transitions of *```expr```* faster than *```max_pos_slew_rate```* to change at *```max_pos_slew_rate```* rate for positive transitions and limits negative transitions to *```max_neg_slew_rate rate```*.",
+        "parameters": {
+            "expr":"Expression.",
+            "max_pos_slew_rate (optional)":"Maximum positive slew rate.",
+            "max_neg_slew_rate (optional)":"Maximum negative slew rate. If not specified, it defaults to the opposite of the *```max_pos_slew_rate```*."
+        }
+    },
+    "last_crossing": {
+        "definitions": {
+            "last_crossing ( expr [ , direction ] )": ""
+        },
+        "description": "Returns a real value representing the simulation time when a signal expression last crossed zero (0).",
+        "parameters": {
+            "expr":"Expression.",
+            "direction (optional)": "An integer expression +1, -1, or 0. If it is set to 0, the function will return the most recent time the input expression had either a rise of falling edge transition. If direction is +1 (-1), the function will return the last time the input expression had a rising (falling) edge transition."
+        }
+    },
+    "laplace_zp": {
+        "definitions": {
+            "laplace_zp ( expr , ζ , ρ [ , ε ] )":""
+        },
+        "description": "Implements the zero-pole form of the Laplace transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "ζ": "A vector of M pairs of real numbers. Each pair represents a zero, the first number in the pair is the real part of the zero and the second is the imaginary part.",
+            "ρ": "A vector of N real pairs, one for each pole. The poles are given in the same manner as the zeros.",
+            "ε (optional)": "A real number or a nature used for deriving an absolute tolerance."
+        }
+    },
+    "laplace_zd": {
+        "definitions": {
+            "laplace_zd ( expr , ζ , d [ , ε ] )":""
+        },
+        "description": "Implements the zero-denominator form of the Laplace transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "ζ": "A vector of M pairs of real numbers. Each pair represents a zero, the first number in the pair is the real part of the zero and the second is the imaginary part.",
+            "d": "A vector of N real numbers containing the coefficients of the denominator.",
+            "ε (optional)": "A real number or a nature used for deriving an absolute tolerance."
+        }
+    },
+    "laplace_np": {
+        "definitions": {
+            "laplace_np ( expr , n , ρ [ , ε ] )":""
+        },
+        "description": "Implements the numerator-pole form of the Laplace transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "n": "A vector of M real numbers containing the coefficients of the numerator.",
+            "ρ": "A vector of N pairs of real numbers. Each pair represents a pole, the first number in the pair is the real part of the pole and the second is the imaginary part.",
+            "ε (optional)": "A real number or a nature used for deriving an absolute tolerance."
+        }
+    },
+    "laplace_nd": {
+        "definitions": {
+            "laplace_nd ( expr , n , d [ , ε ] )":""
+        },
+        "description": "Implements the numerator-denominator form of the Laplace transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "n": "An vector of M real numbers containing the coefficients of the numerator.",
+            "d": "A vector of N real numbers containing the coefficients of the denominator.",
+            "ε (optional)": "A real number or a nature used for deriving an absolute tolerance."
+        }
+    },
+    "zi_zp": {
+        "definitions": {
+            "zi_zp ( expr , ζ , ρ , T [ , τ [ , t0 ] ] )":""
+        },
+        "description":"Implements the zero-pole form of the Z-transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "ζ": "A vector of M pairs of real numbers. Each pair represents a zero, the first number in the pair is the real part of the zero (0) and the second is the imaginary part.",
+            "ρ": "A vector of N real pairs, one for each pole. The poles are given in the same manner as the zeros.",
+            "T": "The sampling period of the filter in seconds. Shall be positive.",
+            "τ (optional)": "Specifies the transition time. Shall be nonnegative. If the transition time is specified and is non-zero, the timestep is controlled to accurately resolve both the leading and trailing corner of the transition. If it is not specified, the transition time is taken to be one (1) unit of time (as defined by the *`default_transition* compiler directive) and the timestep is not controlled to resolve the trailing corner of the transition. If the transition time is specified as zero (0), then the output is abruptly discontinuous.",
+            "t0 (optional)": "The time of the first transition. If not given, the first transition occurs at *```t=0```*."
+        }
+    },
+    "zi_zd": {
+        "definitions": {
+            "zi_zd ( expr , ζ , d , T [ , τ [ , t0 ] ] )":""
+        },
+        "description":"Implements the zero-denominator form of the Z-transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "ζ": "A vector of M pairs of real numbers. Each pair represents a zero, the first number in the pair is the real part of the zero (0) and the second is the imaginary part.",
+            "d": "A vector of N real numbers containing the coefficients of the denominator.",
+            "T": "The sampling period of the filter in seconds. Shall be positive.",
+            "τ (optional)": "Specifies the transition time. Shall be nonnegative. If the transition time is specified and is non-zero, the timestep is controlled to accurately resolve both the leading and trailing corner of the transition. If it is not specified, the transition time is taken to be one (1) unit of time (as defined by the *`default_transition* compiler directive) and the timestep is not controlled to resolve the trailing corner of the transition. If the transition time is specified as zero (0), then the output is abruptly discontinuous.",
+            "t0 (optional)": "The time of the first transition. If not given, the first transition occurs at *```t=0```*."
+        }
+    },
+    "zi_np": {
+        "definitions": {
+            "zi_np ( expr , n , ρ , T [ , τ [ , t0 ] ] )":""
+        },
+        "description":"Implements the numerator-pole form of the Z-transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "n": "A vector of M real numbers containing the coefficients of the numerator.",
+            "ρ": "A vector of N pairs of real numbers. Each pair represents a pole, the first number in the pair is the real part of the pole and the second is the imaginary part.",
+            "T": "The sampling period of the filter in seconds. Shall be positive.",
+            "τ (optional)": "Specifies the transition time. Shall be nonnegative. If the transition time is specified and is non-zero, the timestep is controlled to accurately resolve both the leading and trailing corner of the transition. If it is not specified, the transition time is taken to be one (1) unit of time (as defined by the *`default_transition* compiler directive) and the timestep is not controlled to resolve the trailing corner of the transition. If the transition time is specified as zero (0), then the output is abruptly discontinuous.",
+            "t0 (optional)": "The time of the first transition. If not given, the first transition occurs at *```t=0```*."
+        }
+    },
+    "zi_nd": {
+        "definitions": {
+            "zi_nd ( expr , n , d , T [ , τ [ , t0 ] ] )":""
+        },
+        "description":"Implements the numerator-denominator form of the Z-transform filter.",
+        "parameters": {
+            "expr":"Expression.",
+            "n": "An vector of M real numbers containing the coefficients of the numerator.",
+            "d": "A vector of N real numbers containing the coefficients of the denominator.",
+            "T": "The sampling period of the filter in seconds. Shall be positive.",
+            "τ (optional)": "Specifies the transition time. Shall be nonnegative. If the transition time is specified and is non-zero, the timestep is controlled to accurately resolve both the leading and trailing corner of the transition. If it is not specified, the transition time is taken to be one (1) unit of time (as defined by the *`default_transition* compiler directive) and the timestep is not controlled to resolve the trailing corner of the transition. If the transition time is specified as zero (0), then the output is abruptly discontinuous.",
+            "t0 (optional)": "The time of the first transition. If not given, the first transition occurs at *```t=0```*."
+        }
+    },
+    "limexp": {
+        "definitions": {
+            "limexp ( expr )":""
+        },
+        "description": "Returns a real value which is the exponential of its single real argument, however, it internally limits the change of its output from iteration to iteration in order to improve convergence.\n\nThe apparent behavior of **limexp()** is not distinguishable from **```exp()```**, except using **limexp()** to model semiconductor junctions generally results in dramatically improved convergence.",
+        "parameters": {
+            "expr":"Expression."
+        }
     }
+
 }
