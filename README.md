@@ -1,6 +1,6 @@
-# Verilog A Language Support
+# VerilogA Language Support
 
-This is a Visual Studio Code extension, which provides support for the Verilog A language.
+This is a Visual Studio Code extension, which provides support for the VerilogA language.
 **This extension is still in development.**
 
 
