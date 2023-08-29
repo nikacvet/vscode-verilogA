@@ -134,9 +134,40 @@
         "definitions": {
             "ceil ( x )": ""
         },
-        "description": "Ceils *x*-",
+        "description": "Ceils *x*.",
         "parameters": {
             "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*."
+        }
+    },
+    "cos": {
+        "definitions": {
+            "cos ( x )": ""
+        },
+        "description": "Cosine of *x*. Return values are in radians.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*."
+        }
+    },
+    "cosh": {
+        "definitions": {
+            "cosh ( x )": ""
+        },
+        "description": "Hyperbolic cosine of *x*.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*."
+        }
+    },
+    "cross": {
+        "definitions": {
+            "cross ( expr [ , dir [ , time_tol [ , expr_tol [ , enable ] ] ] ] )": ""
+        },
+        "description": "Generates a monitored analog event and controls the timestep.",
+        "parameters": {
+            "expr":"Analog expression.",
+            "dir (optional)": "Analog expression, evaluates to an integer. If **set to 0 or not specified**, the event and timestep control occur on both positive and negative crossings of the signal. If **dir is +1**, the event and timestep control only occur on rising edge transitions of the signal. If **dir is –1**, the event and timestep control only occur on falling edge transitions of the signal. For any other values of dir, the function does not generate an event and does not act to control the timestep.",
+            "time_tol (optional)": "Time tolerance is specified as a constant expression. A specified *```time_tol```* that is smaller than the time precision is ignored and the time precision is used instead.",
+            "expr_tol (optional)": "Expression tolerance is specified as a constant expression. Specifies the largest difference in *```expr```* that you consider negligible. If the tolerances are not specified, then the tool (e.g., the simulator) sets them. If *```expr_tol```* is specified, *```time_tol```* shall also be specified",
+            "enable (optional)": "If specified and nonzero, the function generates an event at threshold crossings and acts to control the timestep. If specified and is zero, the function is inactive."
         }
     },
     "ddt": {
@@ -152,6 +183,41 @@
             "nature (optional)": "Specifies the explicit absolute tolerance."
         }
     },
+    "ddx": {
+        "definitions": {
+            "ddx(expr, unknown_quantity)": ""
+        },
+        "description": "Returns the partial derivative of its first argument with respect to the unknown indicated by the second argument, holding all other unknowns fixed and evaluated at the current operating point. The second argument shall be the potential of a scalar net or port or the flow through a branch, because these are the unknown variables in the system of equations for the analog solver.",
+        "parameters": {
+            "expr":"Expression.",
+            "unknown_quantity": "The branch probe (voltage or current probe) with respect to which the derivative of the expression needs to be computed."
+        }
+    },
+    "exp": {
+        "definitions": {
+            "exp ( x )": ""
+        },
+        "description": "Exponent of *x*.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*."
+        }
+    },
+    "flicker_noise": {
+        "definitions": {
+            "flicker_noise ( pwr , exp [ , name ] )":""
+        },
+        "description": "Generates pink noise with a power of *```pwr```* at 1Hz which varies in proportion to *```1/(f^exp)```*.",
+        "parameters": {
+            "pwr":"Power.",
+            "exp":"Exponent.",
+            "name (optional)": "A label for the noise source used when the simulator outputs the individual contribution of each noise source to the total output noise. The contributions of noise sources with the same *```name```* from the same instance of a module are combined in the noise contribution summary."
+
+        }
+    },
+    "floor": {
+
+    },
+    
     "idt": {
         "definitions": {
             "idt(expr)": "",
@@ -188,16 +254,7 @@
             "nature (optional)":"Specifies the explicit absolute tolerance for controlling the error in the numerical integration process."
         }
     },
-    "ddx": {
-        "definitions": {
-            "ddx(expr, unknown_quantity)": ""
-        },
-        "description": "Returns the partial derivative of its first argument with respect to the unknown indicated by the second argument, holding all other unknowns fixed and evaluated at the current operating point. The second argument shall be the potential of a scalar net or port or the flow through a branch, because these are the unknown variables in the system of equations for the analog solver.",
-        "parameters": {
-            "expr":"Expression.",
-            "unknown_quantity": "The branch probe (voltage or current probe) with respect to which the derivative of the expression needs to be computed."
-        }
-    },
+    
     
     "transition": {
         "definitions":{
