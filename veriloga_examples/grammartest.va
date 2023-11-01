@@ -14,3 +14,17 @@ analog begin
 end
 
 endmodule
+
+
+
+'include "disciplines.vams"
+
+(* symbol="cap_simple_subckt" *)module va_capacitor(p,n) ;
+
+parameter real capacitance = 1n  ;
+electrical p, n ;
+
+analog
+I(p,n) <+ capacitance * ddt(V(p,n)) ;
+
+endmodule

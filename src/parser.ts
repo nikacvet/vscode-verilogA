@@ -29,6 +29,25 @@ export class VerilogAParser {
         'mg'
     );
 
+    private common_functions = new RegExp(
+        [
+            '(?<=^\\s*',
+            /(?<type>module|program|interface|package|primitive|config|property)\s+/,
+            // Mask automatic
+            /(?:automatic\s+)?/,
+            ')',
+            /(?<name>\w+)/,
+            /(?<params>\s*\([\w\W]*?\))?/,
+            /(?<ports>\s*\([\W\w]*?\))?/,
+            /\s*;/,
+            /(?<body>[\W\w]*?)/,
+            /(?<end>end\1)/ // eslint-disable-line no-useless-backreference
+        ]
+            .map((x) => (typeof x === 'string' ? x : x.source))
+            .join(''),
+        'mg'
+    );
+
     // private r_decl_class = new RegExp(
     //     [
     //         '(?<=^\\s*(virtual\\s+)?',

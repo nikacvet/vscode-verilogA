@@ -217,7 +217,18 @@
     "floor": {
 
     },
-    
+
+
+    "hypot": {
+        "definitions": {
+            "hypot ( x, y )":""
+        },
+        "description":"Returns square roof of sum of x squared and y squared.",
+        "parameters": {
+            "x": "Numeric (*integer* or *real*) operand.  Domain is *```all x```*.",
+            "y": "Numeric (*integer* or *real*) operand.  Domain is *```all y```*."
+        }
+    },
     "idt": {
         "definitions": {
             "idt(expr)": "",
@@ -252,32 +263,6 @@
             "offset (optional)": "Returns *```k```*, where *```offset ≤ k < offset + modulus```* and *```k```* is *```∫t x ( τ ) dτ + ic = n × modulus + k```*, and *```c```* is the value of *```ic```* at *```t0```*.",
             "abstol (optional)":"Specifies the explicit absolute tolerance for controlling the error in the numerical integration process.",
             "nature (optional)":"Specifies the explicit absolute tolerance for controlling the error in the numerical integration process."
-        }
-    },
-    
-    
-    "transition": {
-        "definitions":{
-            "transition ( expr [ , td [ , rise_time [ , fall_time [ , time_tol ] ] ] ] )": ""
-        },
-        "description": "Returns a real number which describes a piecewise linear function over time.",
-        "parameters": {
-            "expr":"Expression. The input expression is expected to evaluate over time to a piecewise constant waveform.",
-            "td (optional)": "The transport delay. If *```td```* is not specified, it is taken to be zero (0.0).",
-            "rise_time (optional)": "Rise time. If only a positive *```rise_time value```* is specified, the simulator uses it for both rise and fall times. If not specified or equal to zero, the value defaults to the value defined by **‘default_transition.**",
-            "fall_time (optional)": "Fall time. If not specified or equal to zero, the value defaults to the value defined by **‘default_transition.**",
-            "time_tol (optional)": "If not specified, the transition function causes the simulator to assure each transition is adequately resolved."
-        }
-    },
-    "slew": {
-        "definitions": {
-            "slew ( expr [ , max_pos_slew_rate [ , max_neg_slew_rate ] ] )": ""
-        },
-        "description": "Forces all transitions of *```expr```* faster than *```max_pos_slew_rate```* to change at *```max_pos_slew_rate```* rate for positive transitions and limits negative transitions to *```max_neg_slew_rate rate```*.",
-        "parameters": {
-            "expr":"Expression.",
-            "max_pos_slew_rate (optional)":"Maximum positive slew rate.",
-            "max_neg_slew_rate (optional)":"Maximum negative slew rate. If not specified, it defaults to the opposite of the *```max_pos_slew_rate```*."
         }
     },
     "last_crossing": {
@@ -338,6 +323,113 @@
             "ε (optional)": "A real number or a nature used for deriving an absolute tolerance."
         }
     },
+    "limexp": {
+        "definitions": {
+            "limexp ( expr )":""
+        },
+        "description": "Returns a real value which is the exponential of its single real argument, however, it internally limits the change of its output from iteration to iteration in order to improve convergence.\n\nThe apparent behavior of **limexp()** is not distinguishable from **```exp()```**, except using **limexp()** to model semiconductor junctions generally results in dramatically improved convergence.",
+        "parameters": {
+            "expr":"Expression."
+        }
+    },
+    "ln": {
+        "definitions": {
+            "ln ( x )":""
+        },
+        "description": "Natural logarithm of *x*.",
+        "parameters": {
+            "x":"Numeric (*integer* or *real*) operand.  Domain is *```x > 0```*."
+        }
+    },
+    "log": {
+        "definitions": {
+            "log ( x )":""
+        },
+        "description": "Decimal logarithm of *x*",
+        "parameters": {
+            "x":"Numeric (*integer* or *real*) operand.  Domain is *```x > 0```*."
+        }
+    },
+    "max": {
+        "definitions": {
+            "max ( x, y )":""
+        },
+        "description": "Maximum.",
+        "parameters": {
+            "x":"Numeric (*integer* or *real*) operand.  Domain is *```all x```*.",
+            "y":"Numeric (*integer* or *real*) operand.  Domain is *```all y```*."
+        }
+    },
+    "min": {
+        "definitions": {
+            "min ( x, y )":""
+        },
+        "description": "Minimum.",
+        "parameters": {
+            "x":"Numeric (*integer* or *real*) operand.  Domain is *```all x```*.",
+            "y":"Numeric (*integer* or *real*) operand.  Domain is *```all y```*."
+        }
+    },
+    "noise_table": {
+        "definitions": {
+            "noise_table ( input [ , name ] )":""
+        },
+        "description": "Performs piecewise linear interpolation to compute the power spectral density generated by the function at each frequency between the lowest and highest frequency in the set of values.",
+        "parameters": {
+            "input":"A vector or a string indicating a filename. When the input is *```a vector```* it contains pairs of real numbers: the first number in each pair is the frequency in Hertz and the second is the power. The vector can either be specified as an array parameter or an array assignment pattern. When the input is *```a file name```*, the indicated file will contain the frequency / power pairs.",
+            "name (optional)":"A label for the noise source used when the simulator outputs the individual contribution of each noise source to the total output noise. The contributions of noise sources with the same *```name```* from the same instance of a module are combined in the noise contribution summary."
+        }
+    },
+    "noise_table_log":{
+        "definitions": {
+            "noise_table_log ( input [ , name ] )":""
+        },
+        "description": "Logarithmically interpolates a set of values to model a process where the spectral density of the noise varies as a piecewise linear function of the base-10 logarithm of frequency.",
+        "parameters":{
+            "input": "A vector or a string indicating a filename. When the input is *```a vector```* it contains pairs of real numbers: the first number in each pair is the frequency in Hertz and the second is the power. The vector can either be specified as an array parameter or an array assignment pattern. When the input is *```a file name```*, the indicated file will contain the frequency / power pairs.",
+            "name (optional)":"A label for the noise source used when the simulator outputs the individual contribution of each noise source to the total output noise. The contributions of noise sources with the same *```name```* from the same instance of a module are combined in the noise contribution summary."
+        }
+    },
+
+    "pow": {
+        "definitions": {
+            "pow ( x, y )": ""
+        },
+        "description": "Computes the value of *```x```* raised to the power of *```y```*."
+
+    },
+
+
+
+    
+    
+    
+    
+    "transition": {
+        "definitions":{
+            "transition ( expr [ , td [ , rise_time [ , fall_time [ , time_tol ] ] ] ] )": ""
+        },
+        "description": "Returns a real number which describes a piecewise linear function over time.",
+        "parameters": {
+            "expr":"Expression. The input expression is expected to evaluate over time to a piecewise constant waveform.",
+            "td (optional)": "The transport delay. If *```td```* is not specified, it is taken to be zero (0.0).",
+            "rise_time (optional)": "Rise time. If only a positive *```rise_time value```* is specified, the simulator uses it for both rise and fall times. If not specified or equal to zero, the value defaults to the value defined by **‘default_transition.**",
+            "fall_time (optional)": "Fall time. If not specified or equal to zero, the value defaults to the value defined by **‘default_transition.**",
+            "time_tol (optional)": "If not specified, the transition function causes the simulator to assure each transition is adequately resolved."
+        }
+    },
+    "slew": {
+        "definitions": {
+            "slew ( expr [ , max_pos_slew_rate [ , max_neg_slew_rate ] ] )": ""
+        },
+        "description": "Forces all transitions of *```expr```* faster than *```max_pos_slew_rate```* to change at *```max_pos_slew_rate```* rate for positive transitions and limits negative transitions to *```max_neg_slew_rate rate```*.",
+        "parameters": {
+            "expr":"Expression.",
+            "max_pos_slew_rate (optional)":"Maximum positive slew rate.",
+            "max_neg_slew_rate (optional)":"Maximum negative slew rate. If not specified, it defaults to the opposite of the *```max_pos_slew_rate```*."
+        }
+    },
+    
     "zi_zp": {
         "definitions": {
             "zi_zp ( expr , ζ , ρ , T [ , τ [ , t0 ] ] )":""
@@ -392,15 +484,6 @@
             "T": "The sampling period of the filter in seconds. Shall be positive.",
             "τ (optional)": "Specifies the transition time. Shall be nonnegative. If the transition time is specified and is non-zero, the timestep is controlled to accurately resolve both the leading and trailing corner of the transition. If it is not specified, the transition time is taken to be one (1) unit of time (as defined by the *`default_transition* compiler directive) and the timestep is not controlled to resolve the trailing corner of the transition. If the transition time is specified as zero (0), then the output is abruptly discontinuous.",
             "t0 (optional)": "The time of the first transition. If not given, the first transition occurs at *```t=0```*."
-        }
-    },
-    "limexp": {
-        "definitions": {
-            "limexp ( expr )":""
-        },
-        "description": "Returns a real value which is the exponential of its single real argument, however, it internally limits the change of its output from iteration to iteration in order to improve convergence.\n\nThe apparent behavior of **limexp()** is not distinguishable from **```exp()```**, except using **limexp()** to model semiconductor junctions generally results in dramatically improved convergence.",
-        "parameters": {
-            "expr":"Expression."
         }
     }
 

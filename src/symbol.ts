@@ -13,7 +13,8 @@ export class VerilogASymbol extends SymbolInformation {
      * @param location The location of the symbol.
      */
     constructor(name: string, type: string, containerName: string, location: Location) {
-        super(name, getSymbolKind(type), containerName, location);
+        // super(name,getSymbolKind(type),containerName,location);
+        super(name, getSymbolKind(name), containerName, location);
         this.type = type;
     }
 }

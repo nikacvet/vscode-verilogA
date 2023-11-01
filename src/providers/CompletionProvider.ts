@@ -3,11 +3,11 @@ import { VerilogAIndexer } from "../indexer";
 import { VerilogASymbol } from "../symbol";
 
 
-
 export class VerilogACompletionProvider implements CompletionItemProvider {
     private indexer: VerilogAIndexer;
     private globals: CompletionItem[];
     private known_types: CompletionItem[];
+    
 
     constructor(indexer: VerilogAIndexer) {
         this.indexer = indexer;
@@ -33,13 +33,14 @@ export class VerilogACompletionProvider implements CompletionItemProvider {
             return new Promise((resolve) => {
                 let completionItems: CompletionItem[] = new Array<CompletionItem>();
                 completionItems = completionItems.concat(this.globals);
-                // var lookupRange = document.getWordRangeAtPosition(position);
-                // var lookupTerm = document.getText(lookupRange);
+                var lookupRange = document.getWordRangeAtPosition(position);
+                var lookupTerm = document.getText(lookupRange);
     
                 // get all DocumentSymbolproviders and step to each of them
                 return commands
                     .executeCommand('vscode.executeDocumentSymbolProvider', document.uri)
                     .then((symbols: VerilogASymbol[]) => {
+
                         symbols.forEach((value: VerilogASymbol) => {
                             console.log(value.containerName);
                             completionItems.push(this.constructModuleItem(value));
@@ -87,11 +88,12 @@ export class VerilogACompletionProvider implements CompletionItemProvider {
 // TypeParameter = 24,
 // User = 25,
 // Issue = 26,
+
 export function getCompletionItemKind(name: String): CompletionItemKind {
     switch (name) {
         case 'parameter':
         case 'localparam':
-            return CompletionItemKind.Property;
+            return CompletionItemKind.Constant;
         case 'package':
         case 'import':
             return CompletionItemKind.File;

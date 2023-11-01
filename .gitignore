@@ -3,5 +3,4 @@
 /dist/
 /src/compiling/grammar/build/
 **.antlr
-help.txt
 *.vsix

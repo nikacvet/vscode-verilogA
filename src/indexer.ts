@@ -47,7 +47,7 @@ export class VerilogAIndexer {
 
     /**
         Scans the `workspace` for Verilog A files,
-        Looks up all the `symbols` that it exist on the queried files,
+        Looks up all the `symbols` that exist on the queried files,
         and saves the symbols as `VerilogASymbol` objects to `this.symbols`.
 
         @return status message when indexing is successful or failed with an error.

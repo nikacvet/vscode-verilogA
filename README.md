@@ -1,7 +1,8 @@
-# VerilogA Language Support
+# VerilogA Language Support for VSCode
 
 This is a Visual Studio Code extension, which provides support for the VerilogA language.
-**This extension is still in development.**
+
+**This extension is still in development. I should probably preface that I don't program in VerilogA nor Typescript, so I will gladly accept *any* suggestions on how to do a certain thing better or more efficiently. Thanks :)**
 
 
 *Special thanks to [eirikpre's SystemVerilog Extension](https://github.com/eirikpre/VSCode-SystemVerilog), as it was of greatest help.*
@@ -32,4 +33,4 @@ See the [changelog](CHANGELOG.md) for more details
 - Better hover information.
 - Fix *(all)* bugs *(is that even possible?)*
 - Compile with OpenVAF
-- more grammar information
+- Rewrite some providers more efficiently
