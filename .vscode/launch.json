@@ -5,7 +5,18 @@
 {
 	"version": "0.0.1",
     "configurations": [
-    
+
+        {
+            "name": "Test",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "node",
+            "runtimeArgs": [
+                "--inspect-brk",
+                "${workspaceRoot}/node_modules/.bin/jest",
+                "--runInBand",
+            ],
+        },
         {
             "name": "Extension",
             "type": "extensionHost",

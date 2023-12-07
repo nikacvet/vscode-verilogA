@@ -2,19 +2,23 @@
     "compilerOptions": {
         "forceConsistentCasingInFileNames": true,
         // "isolatedModules": true,
-        "lib": ["es2020"],
-        "module": "commonjs",
-        "moduleResolution": "node",
+        //"lib": ["es2022"],
+        //"module": "commonjs",
+        "module": "NodeNext",
+        //"moduleResolution": "node",
+        "moduleResolution": "Node16",
+        "esModuleInterop": true,
         "noEmit": false,
         // "noFallthroughCasesInSwitch": true,
         // "noUnusedLocals": true,
         // "noUnusedParameters": true,
         "outDir": "out",
-        "rootDir": "src",
+        "rootDir": "./",
         "skipLibCheck": true,
         "sourceMap": true,
         // "strict": true,
-        "target": "es2020"
+        "target": "ES2022"
     },
     "exclude": ["node_modules", ".vscode-test"]
+      
 }

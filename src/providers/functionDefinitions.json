@@ -237,7 +237,7 @@
             "idt(expr, ic, assert, abstol)": "",
             "idt(expr, ic, assert, nature)": ""
         },
-        "description": "Returns *```∫t x(τ) dτ + c```* between the limits *```t```* and *```t0```*, where *```x(τ)```* is the value of *```expr```* at time *```τ```*, *```t0```* is the start time of the simulation, *```t```* is the current time, and *```c```* is the initial starting point as determined by the simulator and is generally the DC value (the value that makes expr equal to zero).",
+        "description": "Returns *```∫t x(τ) dτ + c```* \\int_{t_0}^{t} x(\tau) between the limits *```t```* and *```t0```*, where *```x(τ)```* is the value of *```expr```* at time *```τ```*, *```t0```* is the start time of the simulation, *```t```* is the current time, and *```c```* is the initial starting point as determined by the simulator and is generally the DC value (the value that makes expr equal to zero).",
         "parameters": {
             "expr": "Expression.",
             "ic (optional)": "Constant value at *```t0```*.",

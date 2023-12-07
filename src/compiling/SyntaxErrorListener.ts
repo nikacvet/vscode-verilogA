@@ -8,7 +8,7 @@ interface SyntaxErrorItem {
     charPositionInLine: number;
     msg: string;
 }
-
+//!! UPDATEEEEEEEEEEE
 /**
  * Stores errors in ANTLR parsing in a list for later access
  */

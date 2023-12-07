@@ -2,7 +2,8 @@
 import { StatusBarItem, GlobPattern, window, ProgressLocation, workspace, TextDocument, Uri, OutputChannel } from 'vscode'; // prettier-ignore
 import { CancellationToken } from 'vscode-languageclient/node';
 import * as glob from 'glob';
-import * as minimatch from 'minimatch';
+//import * as minimatch from 'minimatch';
+import minimatch = require("minimatch");
 import { VerilogAParser } from './parser';
 import { isVerilogADocument } from './utils/client';
 import { VerilogASymbol } from './symbol';
@@ -25,7 +26,7 @@ export class VerilogAIndexer {
     public filesGlob: string = undefined;
     public exclude: GlobPattern = undefined;
     public forceFastIndexing: Boolean = false;
-    public maxLineCountIndexing: Number = 5000;
+    public maxLineCountIndexing: number = 5000;
     public documentSymbolPrecision: string = 'full';
 
     public outputChannel: OutputChannel;

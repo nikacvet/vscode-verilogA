@@ -1,0 +1,35 @@
+https://github.com/eirikpre/VSCode-SystemVerilog/blob/master/syntaxes/systemverilog.tmLanguage.yaml
+https://macromates.com/manual/en/language_grammars
+https://www.siue.edu/~gengel/ece585WebStuff/OVI_VerilogA.pdf
+https://stackoverflow.com/questions/30687783/create-custom-language-in-visual-studio-code
+https://github.com/tzyLee/verilog-highlight/blob/master/Verilog.YAML-tmLanguage
+https://www.youtube.com/watch?v=5msZv-nKebI&ab_channel=TommyNgo
+https://github.com/OpenEuphoria/vscode-euphoria/blob/master/syntaxes/euphoria.tmLanguage.json 
+https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide
+https://www.apeth.com/nonblog/stories/textmatebundle.html
+
+https://stackoverflow.com/questions/54409644/text-mate-lookbehind-after-nonfixed-character-length
+https://code.visualstudio.com/api/language-extensions/language-server-extension-guide
+https://code.visualstudio.com/docs/languages/overview
+
+https://github.com/microsoft/language-server-protocol/issues/964
+https://github.com/antlr/grammars-v4/tree/master/verilog/verilog
+
+"match": "\\b(\\+|&|%|>|>=|<|<=|>>|<<|!|&&|==|!=|~|^|^~|~^|\\?\\:|or)\\b"
+
+					"match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+
+
+									{
+					"name":"variable.other.veriloga",
+					"match":"[ \\t\\r\\n]*\\b([a-zA-Z_][a-zA-Z0-9_$]*)[ \\t\\r\\n]+[a-zA-Z_][a-zA-Z0-9_,= \\t\\n]*"
+				},
+
+// lsp
+https://www.alibabacloud.com/blog/quick-start-to-vscode-plug-ins-write-lsp-project-from-scratch_595297
+https://vscode-docs.readthedocs.io/en/stable/extensionAPI/vscode-api/
+https://code.visualstudio.com/api/references/commands
+
+// regex
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions 
+https://regex101.com/ 

@@ -231,6 +231,7 @@ export function activate(context: ExtensionContext) {
 
     // Options to control the language client
     const clientOptions: LanguageClientOptions = {
+        documentSelector: selector as string[]
     };
 
     // Create the language client and start the client

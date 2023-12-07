@@ -1,5 +1,5 @@
 // key concept to connect to visual studio code!!
-import { createConnection, TextDocuments, Diagnostic, ProposedFeatures, InitializeParams, TextDocumentPositionParams, CompletionItem, TextDocumentSyncKind } from 'vscode-languageserver/node'; // prettier-ignore
+import { createConnection, TextDocuments, Diagnostic, ProposedFeatures, InitializeParams, TextDocumentPositionParams, CompletionItem, TextDocumentSyncKind, CompletionItemKind } from 'vscode-languageserver/node'; // prettier-ignore
 import { TextDocument } from 'vscode-languageserver-textdocument';
 // import { SystemVerilogCompiler, CompilerType } from './compiling/SystemVerilogCompiler';
 import { VerilogACompiler,CompilerType } from './compiling/VerilogACompiler';
@@ -35,11 +35,11 @@ const backend: ANTLRBackend = new ANTLRBackend();
 connection.onInitialize((_params: InitializeParams) => ({
     capabilities: {
         textDocumentSync: TextDocumentSyncKind.Incremental,
-        //hoverProvider : true
-        // Tell the client that this server supports code completion.
-        // completionProvider: {
-        //     resolveProvider: true
-        // }
+        hoverProvider : true,
+        //Tell the client that this server supports code completion.
+        completionProvider: {
+            resolveProvider: true
+        }
     }
 }));
 
@@ -57,7 +57,7 @@ connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): Com
     // which code complete got requested. For the example we ignore this
     // info and always provide the same completion items.
     [
-        /* {
+        {
 				label: 'TypeScript',
 				kind: CompletionItemKind.Text,
 				data: 1
@@ -66,7 +66,7 @@ connection.onCompletion((_textDocumentPosition: TextDocumentPositionParams): Com
 				label: 'JavaScript',
 				kind: CompletionItemKind.Text,
 				data: 2
-			} */
+			}
     ]
 );
 
