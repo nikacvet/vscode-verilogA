@@ -1,0 +1,7 @@
+module hello_world ;
+    analog
+    begin
+    @(initial_step)
+    $strobe("Hello World!") ;
+    end
+endmodule

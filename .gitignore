@@ -4,3 +4,4 @@
 /src/compiling/grammar/build/
 **.antlr
 *.vsix
+help.txt

@@ -61,6 +61,11 @@
             "default": "verbose",
             "description": "Traces the communication between VS Code and the Verilog A language server."
           },
+          "veriloga.antlrVerification": {
+            "type": "boolean",
+            "default": true,
+            "description": "Use ANTLR parser to verify text documents when edited."
+          },
           "veriloga.verifyOnOpen": {
             "type": "boolean",
             "default": true,

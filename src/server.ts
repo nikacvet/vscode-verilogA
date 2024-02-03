@@ -148,6 +148,8 @@ documents.onDidSave((saveEvent) => {
  * @param uri The universal resource indicator for the document to verify
  */
 function verifyDocument(uri: string) {
+    console.log('Verifying document..')
+    //!! THIS IS ANTLR VERIFICATION!
     if (configurations.get(compilerConfigurationsKeys[5])) {
         // Check for ANTLR verification being enabled
         backend
